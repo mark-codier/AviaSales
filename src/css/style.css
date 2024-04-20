@@ -1,0 +1,46 @@
+body{
+    /* width: calc(10000px/4)   */
+    background-color:rgb(93, 87, 87);
+    margin: 0;
+    padding: 0;
+}
+.d-flex{
+    display: flex;
+}
+.d-flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* /////// */
+.nav{
+    background-color: rgb(22, 109, 190);
+}
+.container{
+    justify-content: space-between;
+}
+.logo{
+  width: 100%;
+  height: auto;  
+}
+.logo_cont{
+    width: 3vw;
+}
+.margin-top{
+    margin-top: 8px;
+}
+nav .select-wrapper input.select-dropdown{
+    border:0;
+    color: white;
+    background-color: rgb(15, 72, 126);
+    border: 3px black;
+    text-align: center;
+}
+/* ///////// */
+.main{
+    padding: 10px;
+}
+.form_card{
+    background-color: rgb(121, 181, 161);
+    width: 35vw;
+}
