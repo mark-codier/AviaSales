@@ -1,7 +1,8 @@
 import { getAutoCompleteInstance,getDatePickerInstance } from "../plugins/materialize";
 class FormUI{
     constructor(autoCompleteInstance,datePickerInstance){
-        //DOM
+        //DOM]
+        this.$form = document.forms["aviasales"]
         this.origin = document.getElementById('autocomplete-Origin')
         this.destiny = document.getElementById('autocomplete-destination')
         this.departure = document.getElementById('datepicker-departure');
@@ -9,14 +10,23 @@ class FormUI{
         //material instance
         this.originAutocomplete = autoCompleteInstance(this.origin);
         this.destinationAutoomplete = autoCompleteInstance(this.destiny);
+        this.departureDatePicker = datePickerInstance(this.departure); 
+        this.arrivalDatePicker =  datePickerInstance(this.arrival);
     }
-    getValueFromInputs(){
-        return newObj = {
-            origin: this.origin.value,
-            destiny: this.destiny.value,
-            departure: this.departure.value,
-            arrival: this.arrival.value,
-        }
+    get originValue(){
+        return this.origin.value
+    }
+    get destinationValue(){
+        return this.destiny.value
+    }
+    get departureValue(){
+        return this.departureDatePicker.toString()
+    }
+    get arrivalValue(){
+        return this.arrivalDatePicker.toString()
+    }
+    get form(){
+        return this.$form;
     }
     setAutoCompleteData(data){
         this.originAutocomplete.updateData(data)

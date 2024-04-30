@@ -6,19 +6,28 @@ class Locations {
         this.countries = null;
         this.cities = null; 
         this.countries_code = null;
+        this.airlines = null;
+        this.shortList
+
     }
     async init(){
         const response = await Promise.all([
-            this.api.countries(),this.api.cities(),
+            this.api.countries(),
+            this.api.cities(),
+            this.api.airlines()
+            // this.api.prices  
         ])
-        const [countries,cities] = response;
+        const [countries,cities,airlines] = response;
+        this.airlines = this.serializeAirlines(airlines)
         this.countries = this.serializeCountries(countries)
         this.cities = this.serializeCities(cities)
         this.shortList = this.createShortCutList(this.cities)
+        console.log(this.airlines)
         // this.countries_code = this.getCountriesCodeObj(countries);
         // this.locationEntries = this.getLocationEntries(this.serializeCities(cities))
                return response;
     }
+
     serializeCities(cities){
         const objOfCities = cities.reduce((acc,city) => {
           for(let i=0;i<2;i++){
@@ -42,6 +51,15 @@ class Locations {
         },{});
         return objOfCountries;
     }
+    serializeAirlines(airlines){
+        const objOfAirlines = airlines.reduce((acc,airline) => {
+            airline.logo_url = this.getAirlineLogoByCode(airline.code); 
+            airline.name = airline.name || airline.name_translations.en;
+            acc[airline.code] = airline;
+            return acc;
+        },{});
+        return objOfAirlines;
+    }
     getCountryByCode(code,x){
         if(x<1){
             return this.countries[code].name;
@@ -55,12 +73,19 @@ class Locations {
             return acc;
         },{})
     }
-    // getLocationEntries(cits){
-    //     const cities = cits;
-    //     const codes = this.countries_code;
-    
-    //     return cities;
-    // }
+    getAirlineNameByCode(key){
+        return this.airlines[key].name || this.airlines[key].name_translations.en
+    }
+    getAirlineLogoByCode(key){
+        return `https://pics.avs.io/200/200/${key}.png`
+    }
+    getCityCodeByKey(key){
+        return this.cities[key].code
+    }
+    async fetchTickets(param){
+        const response = await this.api.prices(param);
+        console.log(response)
+    }
 }
 const locations = new Locations(api);
 export default locations;

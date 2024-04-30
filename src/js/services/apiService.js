@@ -19,6 +19,7 @@ class Api {
     }
     async cities(){
         try{ const response = await Axios.get(`${this.url}/cities.json`);
+         console.log(response.data.data)
                 return(response.data.data)
             }
             catch(error){
@@ -26,7 +27,26 @@ class Api {
              return Promise.reject(error)
             }
     }
-    price(){}
+    async airlines(params){
+            try{
+            const response = await Axios.get(`${this.url}/airlines.json`);
+                return(response.data)
+            }
+            catch(error){
+            console.log(error);
+             return Promise.reject(error)
+            }
+    }
+    async prices(params){
+            try{
+            const response = await Axios.get(`https://aviasales-api.herokuapp.com/prices/cheap`,{params});
+                return(response.data)
+            }
+            catch(error){
+            console.log(error);
+             return Promise.reject(error)
+            }
+    }
 }
 const api = new Api(config);
 export default api;
