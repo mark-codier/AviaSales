@@ -7,8 +7,7 @@ class Locations {
         this.cities = null; 
         this.countries_code = null;
         this.airlines = null;
-        this.shortList
-
+        this.ticketResult = {};
     }
     async init(){
         const response = await Promise.all([
@@ -84,7 +83,8 @@ class Locations {
     }
     async fetchTickets(param){
         const response = await this.api.prices(param);
-        console.log(response)
+        this.ticketResult = response;
+        console.log(this.ticketResult)
     }
 }
 const locations = new Locations(api);

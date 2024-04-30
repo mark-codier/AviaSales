@@ -40,7 +40,7 @@ class Api {
     async prices(params){
             try{
             const response = await Axios.get(`https://aviasales-api.herokuapp.com/prices/cheap`,{params});
-                return(response.data)
+                return(response.data.data)
             }
             catch(error){
             console.log(error);
