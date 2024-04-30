@@ -2,6 +2,7 @@ import '../css/style.css';
 import './plugins/index.js';
 import locations from "./store/locations";
 import formUI from "./views/form";
+import currencyUI from './views/currency';
 document.addEventListener('DOMContentLoaded',()=>{
     initApp()
     const form = formUI.form;
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
         //code,code,yyyy-mm,yyyy-mm
     }
+    console.log(currencyUI.currencyValue)
 })
 
 //get/prices/cheap/origin=MOW&destinatiion=ASB&depart_date=2024-05-04&...
