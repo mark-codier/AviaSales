@@ -22,16 +22,13 @@ class Locations {
         this.cities = this.serializeCities(cities)
         this.shortList = this.createShortCutList(this.cities)
         console.log(this.airlines)
-        // this.countries_code = this.getCountriesCodeObj(countries);
-        // this.locationEntries = this.getLocationEntries(this.serializeCities(cities))
                return response;
     }
-
     serializeCities(cities){
         const objOfCities = cities.reduce((acc,city) => {
           for(let i=0;i<2;i++){
             if(i<1){
-            const cityName = city.name || city.name_translations.en;
+            const cityName = city.name;
             const countryName = this.getCountryByCode(city.country_code,0)
             acc[`${cityName}, ${countryName}`] = city   
             }else if(i>0){
@@ -83,8 +80,15 @@ class Locations {
     }
     async fetchTickets(param){
         const response = await this.api.prices(param);
-        this.ticketResult = response;
+        this.ticketResult = this.serializeTickets(response);
         console.log(this.ticketResult)
+    }
+    serializeTickets(response){
+        return Object.values(response).reduce((acc, ticket)=>{
+            ticket.logo = this.getAirlineLogoByCode(ticket.airline)
+            acc.push(ticket)
+            return acc;
+        }, [])
     }
 }
 const locations = new Locations(api);
