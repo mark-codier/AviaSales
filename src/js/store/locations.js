@@ -95,7 +95,7 @@ class Locations {
         console.log(this.ticketResult)
     }
     serializeTickets(response){
-        // const stringForDate = 'dd MMM yyyy hh:mm' 
+        const stringForDate = 'dd MMM yyyy hh:mm' 
         return Object.values(response).reduce((acc, ticket)=>{
             ticket.logo = this.getAirlineLogoByCode(ticket.airline)
             ticket.name = this.getAirlineNameByCode(ticket.airline)
