@@ -1,13 +1,14 @@
 import api from "../services/apiService";
-
+import formatDate from "../../helpers/date";
 class Locations {
-    constructor(api){
+    constructor(api,helpers){
         this.api = api;
         this.countries = null;
         this.cities = null; 
         this.countries_code = null;
         this.airlines = null;
         this.ticketResult = {};
+        this.formatDate = helpers.formatDate
     }
     async init(){
         const response = await Promise.all([
@@ -76,6 +77,9 @@ class Locations {
             return acc;
         },{})
     }
+    getCityNameByCode(code){
+        return this.cities_code[code].name || this.cities_code[code].name_translations.en
+    }
     getAirlineNameByCode(key){
         return this.airlines[key].name || this.airlines[key].name_translations.en
     }
@@ -91,12 +95,18 @@ class Locations {
         console.log(this.ticketResult)
     }
     serializeTickets(response){
+        // const stringForDate = 'dd MMM yyyy hh:mm' 
         return Object.values(response).reduce((acc, ticket)=>{
             ticket.logo = this.getAirlineLogoByCode(ticket.airline)
+            ticket.name = this.getAirlineNameByCode(ticket.airline)
+            ticket.origin_name = this.getCityNameByCode(ticket.origin)
+            ticket.destination_name = this.getCityNameByCode(ticket.destination)
+            // ticket.departureTime = this.formatDate(ticket.departure_at,stringForDate)
+            // ticket.returnTime = this.formatDate(ticket.return_at,stringForDate)
             acc.push(ticket)
             return acc;
         }, [])
     }
 }
-const locations = new Locations(api);
+const locations = new Locations(api,{ formatDate });
 export default locations;
