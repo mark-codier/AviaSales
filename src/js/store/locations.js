@@ -19,10 +19,17 @@ class Locations {
         const [countries,cities,airlines] = response;
         this.airlines = this.serializeAirlines(airlines)
         this.countries = this.serializeCountries(countries)
+        this.cities_code = this.serializeCitiesCode(cities)
         this.cities = this.serializeCities(cities)
         this.shortList = this.createShortCutList(this.cities)
-        console.log(this.airlines)
+        console.log(this.cities_code)
                return response;
+    }
+    serializeCitiesCode(cities){
+        return cities.reduce((acc,city)=>{
+            acc[city.code] = city;
+            return acc;
+        },{}) 
     }
     serializeCities(cities){
         const objOfCities = cities.reduce((acc,city) => {
@@ -93,10 +100,3 @@ class Locations {
 }
 const locations = new Locations(api);
 export default locations;
-//DZ
-//N1
-// 'countries-code': country
-//N2
-//method(){
-//     return `${cities} ${countries}`
-// }
