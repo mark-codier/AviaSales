@@ -3,6 +3,8 @@ import './plugins/index.js';
 import locations from "./store/locations";
 import formUI from "./views/form";
 import currencyUI from './views/currency';
+import ticketUI from './views/ticket.js';
+
 document.addEventListener('DOMContentLoaded',()=>{
     initApp()
     const form = formUI.form;
@@ -23,6 +25,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         await locations.fetchTickets({
             origin,destination,depart_date,return_date,currency
         })
+
+        ticketUI.renderTicket(locations.ticketResult);
+
         //code,code,yyyy-mm,yyyy-mm
     }
 })
