@@ -10,8 +10,6 @@ class FormUI{
         //material instance
         this.originAutocomplete = autoCompleteInstance(this.origin);
         this.destinationAutoomplete = autoCompleteInstance(this.destiny);
-        this.departureDatePicker = datePickerInstance(this.departure); 
-        this.arrivalDatePicker =  datePickerInstance(this.arrival);
     }
     get originValue(){
         return this.origin.value
@@ -20,10 +18,10 @@ class FormUI{
         return this.destiny.value
     }
     get departureValue(){
-        return this.departureDatePicker.toString()
+        return this.departure.value
     }
     get arrivalValue(){
-        return this.arrivalDatePicker.toString()
+        return this.arrival.value
     }
     get form(){
         return this.$form;

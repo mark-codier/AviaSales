@@ -98,15 +98,15 @@ class Locations {
         const stringForDate = 'dd MMM yyyy hh:mm' 
         return Object.values(response).reduce((acc, ticket)=>{
             ticket.logo = this.getAirlineLogoByCode(ticket.airline)
-            ticket.name = this.getAirlineNameByCode(ticket.airline)
+            ticket.airlineName = this.getAirlineNameByCode(ticket.airline)
             ticket.origin_name = this.getCityNameByCode(ticket.origin)
             ticket.destination_name = this.getCityNameByCode(ticket.destination)
-            // ticket.departureTime = this.formatDate(ticket.departure_at,stringForDate)
-            // ticket.returnTime = this.formatDate(ticket.return_at,stringForDate)
+            ticket.departureTime = this.formatDate(ticket.departure_at,stringForDate)
+            ticket.returnTime = this.formatDate(ticket.return_at,stringForDate)
             acc.push(ticket)
             return acc;
         }, [])
     }
 }
-const locations = new Locations(api,{ formatDate });
+const locations = new Locations(api,{formatDate});
 export default locations;
