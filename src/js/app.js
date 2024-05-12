@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         await locations.fetchTickets({
             origin,destination,depart_date,return_date,currency
         })
-
         ticketUI.renderTicket(locations.ticketResult);
-
         //code,code,yyyy-mm,yyyy-mm
     }
 })

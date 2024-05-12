@@ -1,5 +1,6 @@
 import api from "../services/apiService";
 import formatDate from "../../helpers/date";
+import currencyUI from "../views/currency";
 class Locations {
     constructor(api,helpers){
         this.api = api;
@@ -103,6 +104,7 @@ class Locations {
             ticket.destination_name = this.getCityNameByCode(ticket.destination)
             ticket.departureTime = this.formatDate(ticket.departure_at,stringForDate)
             ticket.returnTime = this.formatDate(ticket.return_at,stringForDate)
+            ticket.currency = currencyUI.currencyValue
             acc.push(ticket)
             return acc;
         }, [])

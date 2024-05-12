@@ -47,7 +47,7 @@ nav .select-wrapper input.select-dropdown{
 
 #ticketsContainer .tickets{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+         grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -78,7 +78,6 @@ justify-content: space-between;
 .ml-auto {
 margin-left: auto;
 }
-
 .mr-auto {
 margin-right: auto;
 }
@@ -171,4 +170,7 @@ text-align: center;
 background: whitesmoke;
 font-weight: bold;
 font-size: 18px;
+}
+.d-none{
+    display: none;
 }

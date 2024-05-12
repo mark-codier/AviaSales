@@ -10,9 +10,12 @@
     <!-- //imperative - reduce map filter forEach
     //declarative - for for in  -->
     <nav class="nav">
-        <div class="container d-flex">
+            <div class="container d-flex">
             <div class="logo_cont d-flex-center">
-          <img class="logo" src="https://cdn.worldvectorlogo.com/logos/aviasales-4.svg" alt="logo">
+          <img style="margin-top: -2rem;" class="logo" src="https://cdn.worldvectorlogo.com/logos/aviasales-4.svg" alt="logo">
+            </div>
+            <div class="nav_storage d-flex-center">
+              <i id="storage_icon" style="margin-top: 2rem;color: #74C0FC;" class="fa-solid fa-hard-drive fa-2xl"></i>
             </div>
           <!-- <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
           <ul id="nav_ul" class="ul">
@@ -21,7 +24,10 @@
           </ul>
         </div>
       </nav>
-      <main class="main d-flex-center">
+      <main style="flex-direction: column;" class="main d-flex-center">
+        <div class="container storage d-none">
+          
+        </div>
         <div class="form_card card">
             <form action="" name="aviasales">
             <div class="card-content">
@@ -58,11 +64,11 @@
             </div>
         </form>
         </div>
-        <div id="ticketsContainer">
-          <div class="container">
-            <div class="row"></div>
-          </div>
-        </div>
       </main>
+      <div id="ticketsContainer">
+        <div class="container">
+          <div class="row"></div>
+        </div>
+      </div>
 </body>
 </html>
